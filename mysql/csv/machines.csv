@@ -1,0 +1,4 @@
+service_tag,lieu_geographique,ip_privee,ip_publique,reservee,reservee_du,reservee_jusquau
+test,test,test,test,1,2024-12-02,2024-12-07
+test1,Paris,192.168.1.1,203.0.113.1,0,2023-12-01,
+test2,Lyon,192.168.1.2,203.0.113.2,0,,2023-12-10

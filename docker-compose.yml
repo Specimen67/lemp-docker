@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: lemp-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./php:/var/www/html
+    depends_on:
+      - php
+
+  php:
+    build:
+      context: ./php
+    container_name: lemp-php
+    volumes:
+      - ./php:/var/www/html
+      - ./mysql/csv:/csv
+      - ./php/uploads:/var/www/html/uploads
+
+  mysql:
+    image: mysql:8.0
+    container_name: lemp-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: lemp_db
+      MYSQL_USER: lemp_user
+      MYSQL_PASSWORD: lemp_password
+    volumes:
+      - ./mysql/data:/docker-entrypoint-initdb.d
+      - ./mysql/csv:/csv
